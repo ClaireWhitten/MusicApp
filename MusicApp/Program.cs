@@ -17,7 +17,7 @@ namespace MusicApp
         [STAThread]
         static void Main()
         {
-            /*using (MusicAppContext context = new MusicAppContext())
+           /* using (MusicAppContext context = new MusicAppContext())
             {
                 User newUser = context.Users.Add(new User()
                 {
@@ -38,11 +38,12 @@ namespace MusicApp
                 });
 
                 
+                
                 context.SaveChanges();
             }
 */
 
-
+            
 
 
 

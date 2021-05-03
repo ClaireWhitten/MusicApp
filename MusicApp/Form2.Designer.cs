@@ -49,12 +49,15 @@ namespace MusicApp
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.btn_Playlists = new System.Windows.Forms.Button();
+            this.cb_ChoosePlaylist = new System.Windows.Forms.ComboBox();
+            this.lbl_choosePlaylist = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_welcome
             // 
             this.lbl_welcome.AutoSize = true;
-            this.lbl_welcome.Location = new System.Drawing.Point(250, 9);
+            this.lbl_welcome.Location = new System.Drawing.Point(281, 25);
             this.lbl_welcome.Name = "lbl_welcome";
             this.lbl_welcome.Size = new System.Drawing.Size(52, 13);
             this.lbl_welcome.TabIndex = 0;
@@ -62,21 +65,21 @@ namespace MusicApp
             // 
             // txt_AddArtist
             // 
-            this.txt_AddArtist.Location = new System.Drawing.Point(185, 100);
+            this.txt_AddArtist.Location = new System.Drawing.Point(185, 129);
             this.txt_AddArtist.Name = "txt_AddArtist";
             this.txt_AddArtist.Size = new System.Drawing.Size(134, 20);
             this.txt_AddArtist.TabIndex = 1;
             // 
             // txt_AddAlbum
             // 
-            this.txt_AddAlbum.Location = new System.Drawing.Point(181, 230);
+            this.txt_AddAlbum.Location = new System.Drawing.Point(185, 269);
             this.txt_AddAlbum.Name = "txt_AddAlbum";
             this.txt_AddAlbum.Size = new System.Drawing.Size(100, 20);
             this.txt_AddAlbum.TabIndex = 2;
             // 
             // txt_AddSong
             // 
-            this.txt_AddSong.Location = new System.Drawing.Point(181, 361);
+            this.txt_AddSong.Location = new System.Drawing.Point(185, 442);
             this.txt_AddSong.Name = "txt_AddSong";
             this.txt_AddSong.Size = new System.Drawing.Size(100, 20);
             this.txt_AddSong.TabIndex = 3;
@@ -102,7 +105,7 @@ namespace MusicApp
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 341);
+            this.label3.Location = new System.Drawing.Point(35, 377);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 13);
             this.label3.TabIndex = 0;
@@ -111,16 +114,16 @@ namespace MusicApp
             // cb_Albums
             // 
             this.cb_Albums.FormattingEnabled = true;
-            this.cb_Albums.Location = new System.Drawing.Point(360, 360);
+            this.cb_Albums.Location = new System.Drawing.Point(360, 442);
             this.cb_Albums.Name = "cb_Albums";
             this.cb_Albums.Size = new System.Drawing.Size(255, 21);
             this.cb_Albums.TabIndex = 4;
             // 
             // btn_AddArtist
             // 
-            this.btn_AddArtist.Location = new System.Drawing.Point(579, 83);
+            this.btn_AddArtist.Location = new System.Drawing.Point(615, 118);
             this.btn_AddArtist.Name = "btn_AddArtist";
-            this.btn_AddArtist.Size = new System.Drawing.Size(119, 37);
+            this.btn_AddArtist.Size = new System.Drawing.Size(119, 31);
             this.btn_AddArtist.TabIndex = 5;
             this.btn_AddArtist.Text = "Add Artist";
             this.btn_AddArtist.UseVisualStyleBackColor = true;
@@ -129,7 +132,7 @@ namespace MusicApp
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(182, 438);
+            this.label4.Location = new System.Drawing.Point(184, 503);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(258, 13);
             this.label4.TabIndex = 6;
@@ -138,17 +141,18 @@ namespace MusicApp
             // chk_playlistYes
             // 
             this.chk_playlistYes.AutoSize = true;
-            this.chk_playlistYes.Location = new System.Drawing.Point(185, 483);
+            this.chk_playlistYes.Location = new System.Drawing.Point(473, 503);
             this.chk_playlistYes.Name = "chk_playlistYes";
             this.chk_playlistYes.Size = new System.Drawing.Size(44, 17);
             this.chk_playlistYes.TabIndex = 7;
             this.chk_playlistYes.Text = "Yes";
             this.chk_playlistYes.UseVisualStyleBackColor = true;
+            this.chk_playlistYes.CheckedChanged += new System.EventHandler(this.chk_playlistYes_CheckedChanged);
             // 
             // chk_playlistNo
             // 
             this.chk_playlistNo.AutoSize = true;
-            this.chk_playlistNo.Location = new System.Drawing.Point(185, 519);
+            this.chk_playlistNo.Location = new System.Drawing.Point(523, 503);
             this.chk_playlistNo.Name = "chk_playlistNo";
             this.chk_playlistNo.Size = new System.Drawing.Size(40, 17);
             this.chk_playlistNo.TabIndex = 8;
@@ -157,9 +161,9 @@ namespace MusicApp
             // 
             // btn_AddAlbum
             // 
-            this.btn_AddAlbum.Location = new System.Drawing.Point(579, 221);
+            this.btn_AddAlbum.Location = new System.Drawing.Point(615, 256);
             this.btn_AddAlbum.Name = "btn_AddAlbum";
-            this.btn_AddAlbum.Size = new System.Drawing.Size(119, 35);
+            this.btn_AddAlbum.Size = new System.Drawing.Size(119, 33);
             this.btn_AddAlbum.TabIndex = 5;
             this.btn_AddAlbum.Text = "Add Album";
             this.btn_AddAlbum.UseVisualStyleBackColor = true;
@@ -168,7 +172,7 @@ namespace MusicApp
             // cb_Artists
             // 
             this.cb_Artists.FormattingEnabled = true;
-            this.cb_Artists.Location = new System.Drawing.Point(360, 229);
+            this.cb_Artists.Location = new System.Drawing.Point(360, 268);
             this.cb_Artists.Name = "cb_Artists";
             this.cb_Artists.Size = new System.Drawing.Size(121, 21);
             this.cb_Artists.TabIndex = 9;
@@ -176,7 +180,7 @@ namespace MusicApp
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(357, 199);
+            this.label5.Location = new System.Drawing.Point(357, 237);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(101, 13);
             this.label5.TabIndex = 10;
@@ -185,7 +189,7 @@ namespace MusicApp
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(357, 330);
+            this.label6.Location = new System.Drawing.Point(365, 408);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(75, 13);
             this.label6.TabIndex = 0;
@@ -193,9 +197,9 @@ namespace MusicApp
             // 
             // btn_AddSong
             // 
-            this.btn_AddSong.Location = new System.Drawing.Point(579, 496);
+            this.btn_AddSong.Location = new System.Drawing.Point(615, 555);
             this.btn_AddSong.Name = "btn_AddSong";
-            this.btn_AddSong.Size = new System.Drawing.Size(119, 40);
+            this.btn_AddSong.Size = new System.Drawing.Size(119, 35);
             this.btn_AddSong.TabIndex = 11;
             this.btn_AddSong.Text = "Add Song";
             this.btn_AddSong.UseVisualStyleBackColor = true;
@@ -204,7 +208,7 @@ namespace MusicApp
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(178, 199);
+            this.label7.Location = new System.Drawing.Point(178, 237);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 13);
             this.label7.TabIndex = 0;
@@ -213,7 +217,7 @@ namespace MusicApp
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(184, 66);
+            this.label9.Location = new System.Drawing.Point(184, 100);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(61, 13);
             this.label9.TabIndex = 13;
@@ -222,17 +226,47 @@ namespace MusicApp
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(182, 330);
+            this.label10.Location = new System.Drawing.Point(182, 408);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(63, 13);
             this.label10.TabIndex = 0;
             this.label10.Text = "Song Name";
             // 
+            // btn_Playlists
+            // 
+            this.btn_Playlists.Location = new System.Drawing.Point(177, 641);
+            this.btn_Playlists.Name = "btn_Playlists";
+            this.btn_Playlists.Size = new System.Drawing.Size(438, 57);
+            this.btn_Playlists.TabIndex = 14;
+            this.btn_Playlists.Text = "GO TO MY PLAYLISTS";
+            this.btn_Playlists.UseVisualStyleBackColor = true;
+            this.btn_Playlists.Click += new System.EventHandler(this.btn_Playlists_Click);
+            // 
+            // cb_ChoosePlaylist
+            // 
+            this.cb_ChoosePlaylist.FormattingEnabled = true;
+            this.cb_ChoosePlaylist.Location = new System.Drawing.Point(442, 563);
+            this.cb_ChoosePlaylist.Name = "cb_ChoosePlaylist";
+            this.cb_ChoosePlaylist.Size = new System.Drawing.Size(121, 21);
+            this.cb_ChoosePlaylist.TabIndex = 15;
+            // 
+            // lbl_choosePlaylist
+            // 
+            this.lbl_choosePlaylist.AutoSize = true;
+            this.lbl_choosePlaylist.Location = new System.Drawing.Point(442, 544);
+            this.lbl_choosePlaylist.Name = "lbl_choosePlaylist";
+            this.lbl_choosePlaylist.Size = new System.Drawing.Size(80, 13);
+            this.lbl_choosePlaylist.TabIndex = 16;
+            this.lbl_choosePlaylist.Text = "Choose playlist:";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 574);
+            this.ClientSize = new System.Drawing.Size(800, 720);
+            this.Controls.Add(this.lbl_choosePlaylist);
+            this.Controls.Add(this.cb_ChoosePlaylist);
+            this.Controls.Add(this.btn_Playlists);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btn_AddSong);
             this.Controls.Add(this.label5);
@@ -282,5 +316,8 @@ namespace MusicApp
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btn_Playlists;
+        private System.Windows.Forms.ComboBox cb_ChoosePlaylist;
+        private System.Windows.Forms.Label lbl_choosePlaylist;
     }
 }

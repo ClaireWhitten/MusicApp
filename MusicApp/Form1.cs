@@ -13,7 +13,7 @@ namespace MusicApp
     public partial class Form1 : Form
     {
 
-        public string UserName { get; set; }
+        public User CurrentUser { get; set; }
         public Form1()
         {
 
@@ -79,8 +79,8 @@ namespace MusicApp
                 {  // add password encryption here later 
                     if (user.Password == txt_LoginPassword.Text)
                     {
-                        UserName = $"{user.FirstName} {user.LastName}";
-                        Form2 form2 = new Form2(UserName);
+                        CurrentUser = user;
+                        Form2 form2 = new Form2(CurrentUser);
                         form2.ShowDialog();
                     } 
                     else

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,12 +13,17 @@ namespace MusicApp
 {
     public partial class Form2 : Form
     {
-        
-        public Form2(string username)
+
+        public User CurrentUser;
+        public Form2(User currentUser)
         {
             InitializeComponent();
+            CurrentUser = currentUser;
+            lbl_welcome.Text = $"Welcome {CurrentUser.FirstName} {CurrentUser.LastName}!";
 
-            lbl_welcome.Text = $"Welcome {username}!";
+            cb_ChoosePlaylist.Hide();
+            lbl_choosePlaylist.Hide();
+
 
             var context = new MusicAppContext();
             var artistCollection = context.Artists.Select(a => new
@@ -130,17 +136,16 @@ namespace MusicApp
             }
             else
             {
-                var albumArtist  = context.Albums.
-
-
-
-
+                Album album = context.Albums
+                    .Where(a => a.AlbumId == selectedId)
+                    .FirstOrDefault();
+                   
 
 
                 Song song = new Song()
                 {
                     AlbumId = selectedId,
-                    ArtistId = 
+                    ArtistId = album.ArtistId,
                     Title = txt_AddSong.Text,
                     Length = 2.5,
                     CreatedAt = DateTime.Now,
@@ -149,8 +154,79 @@ namespace MusicApp
 
                 context.Songs.Add(song);
                 context.SaveChanges();
+
+                if (chk_playlistYes.Checked)
+                {
+                    var ExistingPlaylists = context.Playlists.Where(p => p.UserId == CurrentUser.UserId);
+
+                    if (ExistingPlaylists != null)
+                    {
+                        var usersPlaylists = ExistingPlaylists
+                        .Select(p => new
+                        {
+                            Name = p.Name,
+                            Details = p.Name + " " + "Last updated: " + p.UpdatedAt,
+                            Id = p.PlaylistId
+                        }).ToList();
+
+                        cb_ChoosePlaylist.DataSource = usersPlaylists;
+                        cb_ChoosePlaylist.DisplayMember = "Name";
+                        cb_ChoosePlaylist.ValueMember = "Id";
+
+
+                        int selectedPlaylist = Convert.ToInt32(cb_ChoosePlaylist.SelectedValue);
+
+                        PlaylistSong newSongForPlaylist = new PlaylistSong()
+                        {
+                            PlaylistId = selectedPlaylist,
+                            SongId = song.SongId
+                        };
+
+                        context.PlaylistSongs.Add(newSongForPlaylist);
+                        Playlist playList = context.Playlists.FirstOrDefault(p => p.PlaylistId == selectedPlaylist);
+                        var playListSongs = context.PlaylistSongs.Where(ps => ps.PlaylistId == playList.PlaylistId).ToList();
+                        int NumberOfSongs = playListSongs.Count;
+
+
+                        MessageBox.Show($"{song.Title} has been added to the playlist '{playList.Name}'.\n This playlist now has {NumberOfSongs} songs.");
+
+                        Playlist playlist = context.Playlists.FirstOrDefault(p => p.PlaylistId == selectedPlaylist);
+                        playlist.UpdatedAt = DateTime.Now;
+
+
+                        context.SaveChanges();
+
+
+                    }
+                    else
+                    {
+                        cb_ChoosePlaylist.Text = "You have no playlists";
+                    }
+                    
+                }
+                
             }
 
+
+        }
+
+        private void chk_playlistYes_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_playlistYes.Checked)
+            {
+                cb_ChoosePlaylist.Show();
+                lbl_choosePlaylist.Show();
+            } else
+            {
+                cb_ChoosePlaylist.Hide();
+                lbl_choosePlaylist.Hide();
+            }
+        }
+
+        private void btn_Playlists_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3(CurrentUser);
+            form3.ShowDialog();
 
         }
     }
