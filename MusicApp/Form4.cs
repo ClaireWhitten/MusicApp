@@ -108,6 +108,7 @@ namespace MusicApp
                 context.PlaylistSongs.Add(newPlaylistSong);
                 context.SaveChanges();
                 MessageBox.Show($"{newPlaylist.Name} is saved!");
+                this.Close();
             }
 
 

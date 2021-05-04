@@ -133,6 +133,7 @@ namespace MusicApp
             this.Controls.Add(this.lb_UserPlaylists);
             this.Controls.Add(this.label1);
             this.Name = "Form3";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form3";
             this.ResumeLayout(false);
             this.PerformLayout();

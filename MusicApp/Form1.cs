@@ -80,8 +80,12 @@ namespace MusicApp
                     if (user.Password == txt_LoginPassword.Text)
                     {
                         CurrentUser = user;
+                        this.Hide();
                         Form2 form2 = new Form2(CurrentUser);
                         form2.ShowDialog();
+                        this.Close();
+                       /* Form2 form2 = new Form2(CurrentUser);
+                        form2.ShowDialog();*/
                     } 
                     else
                     {
@@ -91,6 +95,11 @@ namespace MusicApp
                     }
                 }
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

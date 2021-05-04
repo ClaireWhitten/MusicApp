@@ -288,6 +288,7 @@ namespace MusicApp
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_welcome);
             this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
             this.ResumeLayout(false);
             this.PerformLayout();
