@@ -35,6 +35,8 @@ namespace MusicApp
             this.lb_PlaylistSongs = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.btn_like = new System.Windows.Forms.Button();
+            this.lbl_likedSong = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -73,6 +75,7 @@ namespace MusicApp
             this.lb_PlaylistSongs.Name = "lb_PlaylistSongs";
             this.lb_PlaylistSongs.Size = new System.Drawing.Size(309, 251);
             this.lb_PlaylistSongs.TabIndex = 3;
+            this.lb_PlaylistSongs.SelectedIndexChanged += new System.EventHandler(this.lb_PlaylistSongs_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -94,11 +97,35 @@ namespace MusicApp
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btn_like
+            // 
+            this.btn_like.Location = new System.Drawing.Point(444, 394);
+            this.btn_like.Name = "btn_like";
+            this.btn_like.Size = new System.Drawing.Size(108, 44);
+            this.btn_like.TabIndex = 6;
+            this.btn_like.Text = "Like this song!";
+            this.btn_like.UseVisualStyleBackColor = true;
+            this.btn_like.Click += new System.EventHandler(this.btn_like_Click);
+            // 
+            // lbl_likedSong
+            // 
+            this.lbl_likedSong.AutoSize = true;
+            this.lbl_likedSong.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.lbl_likedSong.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_likedSong.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbl_likedSong.Location = new System.Drawing.Point(629, 394);
+            this.lbl_likedSong.Name = "lbl_likedSong";
+            this.lbl_likedSong.Size = new System.Drawing.Size(112, 17);
+            this.lbl_likedSong.TabIndex = 7;
+            this.lbl_likedSong.Text = "LIKED SONG <3";
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbl_likedSong);
+            this.Controls.Add(this.btn_like);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lb_PlaylistSongs);
@@ -120,5 +147,7 @@ namespace MusicApp
         private System.Windows.Forms.ListBox lb_PlaylistSongs;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_like;
+        private System.Windows.Forms.Label lbl_likedSong;
     }
 }

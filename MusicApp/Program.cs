@@ -91,6 +91,11 @@ namespace MusicApp
         public DateTime? UpdatedAt { get; set; }
 
         public ICollection<PlaylistSong> PlayListSongs { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Name}              (Last updated:{UpdatedAt})";
+        }
     }
 
     public class Interaction
@@ -112,6 +117,8 @@ namespace MusicApp
         public DateTime? CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }
+
+        
     }
 
     public class Song
@@ -135,6 +142,10 @@ namespace MusicApp
 
         public ICollection<PlaylistSong> PlayListSongs { get; set; }
 
+        public override string ToString()
+        {
+            return $"{Title.ToUpper()}  ({Length} minutes)";
+        }
     }
 
     public class Album

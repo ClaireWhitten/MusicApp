@@ -161,7 +161,7 @@ namespace MusicApp
 
                     if (ExistingPlaylists != null)
                     {
-                        var usersPlaylists = ExistingPlaylists
+                        /*var usersPlaylists = ExistingPlaylists
                         .Select(p => new
                         {
                             Name = p.Name,
@@ -171,26 +171,28 @@ namespace MusicApp
 
                         cb_ChoosePlaylist.DataSource = usersPlaylists;
                         cb_ChoosePlaylist.DisplayMember = "Name";
-                        cb_ChoosePlaylist.ValueMember = "Id";
+                        cb_ChoosePlaylist.ValueMember = "Id";*/
 
 
-                        int selectedPlaylist = Convert.ToInt32(cb_ChoosePlaylist.SelectedValue);
+                        Playlist selectedPlaylist = (Playlist)cb_ChoosePlaylist.SelectedItem;
 
                         PlaylistSong newSongForPlaylist = new PlaylistSong()
                         {
-                            PlaylistId = selectedPlaylist,
+                            PlaylistId = selectedPlaylist.PlaylistId,
                             SongId = song.SongId
                         };
 
                         context.PlaylistSongs.Add(newSongForPlaylist);
-                        Playlist playList = context.Playlists.FirstOrDefault(p => p.PlaylistId == selectedPlaylist);
+                        context.SaveChanges();
+
+                        Playlist playList = context.Playlists.FirstOrDefault(p => p.PlaylistId == selectedPlaylist.PlaylistId);
                         var playListSongs = context.PlaylistSongs.Where(ps => ps.PlaylistId == playList.PlaylistId).ToList();
                         int NumberOfSongs = playListSongs.Count;
 
 
                         MessageBox.Show($"{song.Title} has been added to the playlist '{playList.Name}'.\n This playlist now has {NumberOfSongs} songs.");
 
-                        Playlist playlist = context.Playlists.FirstOrDefault(p => p.PlaylistId == selectedPlaylist);
+                        Playlist playlist = context.Playlists.FirstOrDefault(p => p.PlaylistId == selectedPlaylist.PlaylistId);
                         playlist.UpdatedAt = DateTime.Now;
 
 
@@ -216,6 +218,13 @@ namespace MusicApp
             {
                 cb_ChoosePlaylist.Show();
                 lbl_choosePlaylist.Show();
+
+                var context = new MusicAppContext();
+                List<Playlist> usersPlaylists = context.Playlists.Where(p => p.UserId == CurrentUser.UserId).ToList();
+
+                cb_ChoosePlaylist.DataSource = usersPlaylists;
+                //cb_ChoosePlaylist.ValueMember = "PlaylistId";
+
             } else
             {
                 cb_ChoosePlaylist.Hide();
